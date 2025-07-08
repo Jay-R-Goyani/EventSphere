@@ -11,7 +11,11 @@ const Banner = () => {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const response = await fetch(`${config.BACKEND_API || "http://localhost:3000"}/api/event/concerts`); // Replace with your API URL
+        const response = await fetch(`${config.BACKEND_API || "http://localhost:3000"}/api/event/concerts`, {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }); // Replace with your API URL
         const data = await response.json();
         // console.log(data);
         setBanners(data);
