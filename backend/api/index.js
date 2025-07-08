@@ -8,7 +8,7 @@ const app = express();
 const FrontendApi = process.env.FRONTEND_API;
 
 const corsOptions = {
-    origin: [FrontendApi , "https//localhost:3000"],
+    origin: [FrontendApi , "https://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -44,6 +44,7 @@ app.use("/api/admin-auth", adminAuthRoutes);
 
 
 const PORT = process.env.PORT || 3000;
+
 connectDb().then(() => {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);

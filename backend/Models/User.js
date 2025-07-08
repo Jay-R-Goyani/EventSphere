@@ -49,7 +49,7 @@ userSchema.pre("save", async function(next) {
 // Method to generate JWT for user
 userSchema.methods.generateToken = async function() {
     return jwt.sign({ userId: this._id, email: this.email },
-        process.env.JWT_SECRET || 'changeme', { expiresIn: "30d" }
+        process.env.JWT_SECRET, { expiresIn: "30d" }
     );
 };
 
