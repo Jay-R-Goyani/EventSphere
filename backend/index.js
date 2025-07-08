@@ -1,49 +1,37 @@
 const express = require('express');
 const cors = require('cors');
-const user = require("./routes/user");
-const connectDb = require("./config/dbconnection");
-const blogRoutes = require('./routes/blogRoutes');
-const crud = require('./routes/crud')
-const college = require('./routes/college')
-const { cloudinaryConnect } = require("./config/cloudinary")
 require("dotenv").config();
-const eventRoutes = require("./routes/eventRoutes")
-const homepageRoutes = require("./routes/homepageRoutes")
-const collegeRep = require('./routes/collegeRep')
-const adminroutes = require("./routes/adminroutes")
-const adminAuthRoutes = require("./routes/adminAuth");
-const serverless = require('serverless-http');
+
 const app = express();
 
-const corsOptions = {
-    origin: ["http://localhost:5173"],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-};
-
-app.use(cors(corsOptions));
-
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }));
 
+const user = require("./routes/user");
+const blogRoutes = require('./routes/blogRoutes');
+const crud = require('./routes/crud');
+const college = require('./routes/college');
+const eventRoutes = require("./routes/eventRoutes");
+const homepageRoutes = require("./routes/homepageRoutes");
+const collegeRep = require('./routes/collegeRep');
+const adminroutes = require("./routes/adminroutes");
+const adminAuthRoutes = require("./routes/adminAuth");
 
-const PORT = process.env.PORT || 3000;
 app.get('/', (req, res) => {
   res.send("Backend is live!");
 });
 app.use("/api/auth", user);
 app.use("/api/blog", blogRoutes);
 app.use("/api/users", crud);
-app.use("/api/college", college)
+app.use("/api/college", college);
 app.use("/api/event", eventRoutes);
-app.use("/api/asd", eventRoutes)
 app.use("/api/home", homepageRoutes);
 app.use("/api/collegeRep", collegeRep);
 app.use("/api/admin", adminroutes);
 app.use("/api/admin-auth", adminAuthRoutes);
 
-
+const connectDb = require("./config/dbconnection");
 connectDb();
 
-module.exports.handler = serverless(app);
+module.exports = app;
