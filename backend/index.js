@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }))
 
 const PORT = process.env.PORT || 3000;
 app.get('/', (req, res) => {
-  res.send('Express backend working on Vercel');
+  res.send("Backend is live!");
 });
 app.use("/api/auth", user);
 app.use("/api/blog", blogRoutes);
@@ -43,15 +43,6 @@ app.use("/api/admin", adminroutes);
 app.use("/api/admin-auth", adminAuthRoutes);
 
 
-app.get("/", (req, res) => {
-    res.send("Working");
-})
-
-
-connectDb().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server is running at port: ${PORT}`);
-    });
-});
+connectDb();
 
 module.exports = app;
