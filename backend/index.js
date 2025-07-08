@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 require("dotenv").config();
+const connectDb = require("./config/dbconnection");
+const serverless = require('serverless-http');
+
 
 const app = express();
 const corsOptions = {
@@ -39,14 +42,6 @@ app.use("/api/collegeRep", collegeRep);
 app.use("/api/admin", adminroutes);
 app.use("/api/admin-auth", adminAuthRoutes);
 
-const connectDb = require("./config/dbconnection");
-connectDb().then(() => {
-    app.listen(process.env.PORT, () => {
-        console.log(`Server is running on port ${process.env.PORT}`);
-        res.send("Connected to database");
-    });
-}).catch((err) => {
-    console.log(err);
-});
+connectDb();
 
-module.exports = app;
+module.exports = serverless(app);
