@@ -12,6 +12,7 @@ const homepageRoutes = require("./routes/homepageRoutes")
 const collegeRep = require('./routes/collegeRep')
 const adminroutes = require("./routes/adminroutes")
 const adminAuthRoutes = require("./routes/adminAuth");
+const serverless = require('serverless-http');
 const app = express();
 
 const corsOptions = {
@@ -45,4 +46,4 @@ app.use("/api/admin-auth", adminAuthRoutes);
 
 connectDb();
 
-module.exports = app;
+module.exports.handler = serverless(app);
