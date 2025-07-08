@@ -28,6 +28,7 @@ const adminAuthRoutes = require("./routes/adminAuth");
 app.get('/', (req, res) => {
     res.send("Backend is live!");
 });
+
 app.use("/api/auth", user);
 app.use("/api/blog", blogRoutes);
 app.use("/api/users", crud);
@@ -39,6 +40,13 @@ app.use("/api/admin", adminroutes);
 app.use("/api/admin-auth", adminAuthRoutes);
 
 const connectDb = require("./config/dbconnection");
-connectDb();
+connectDb().then(() => {
+    app.listen(process.env.PORT, () => {
+        console.log(`Server is running on port ${process.env.PORT}`);
+        res.send("Connected to database");
+    });
+}).catch((err) => {
+    console.log(err);
+});
 
 module.exports = app;
