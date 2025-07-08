@@ -8,9 +8,9 @@ const app = express();
 const FrontendApi = process.env.FRONTEND_API;
 
 const corsOptions = {
-    origin: "*",
+    origin: [FrontendApi , "https//localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Access-Control-Allow-Methods", "Access-Control-Allow-Credentials", "Access-Control-Allow-Private-Network", "Access-Control-Allow-Redirect", "Access-Control-Allow-Origin"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
 };
 app.use(cors(corsOptions));
@@ -36,6 +36,7 @@ app.use("/api/blog", blogRoutes);
 app.use("/api/users", crud);
 app.use("/api/college", college);
 app.use("/api/event", eventRoutes);
+app.use("/api/asd", eventRoutes)
 app.use("/api/home", homepageRoutes);
 app.use("/api/collegeRep", collegeRep);
 app.use("/api/admin", adminroutes);
