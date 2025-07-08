@@ -4,17 +4,9 @@ Our platform serves as a professional online event management system, enabling c
 ---
 
 ## ⬇️ Live project link ⬇️  
-[Deployed on Vercel 🔗](https://event-sphere-g11.vercel.app/ )  
+[Deployed on Vercel 🔗](https://event-sphere-frontendn.vercel.app/)  
 
 ---
-
----
-
-## ⬇️ Youtube Demo link ⬇️  
-[Demo Video 🔗](https://youtu.be/5EN16JZaEkg)  
-
----
-
 
 ## Overview 📑  
 EventSphere is a comprehensive platform designed to streamline the management and participation of events such as concerts, workshops, and college activities. Colleges can designate representatives from clubs or committees to upload and manage events.
@@ -73,4 +65,4 @@ Reliability: Ensures secure and stable hosting with minimal downtime.
 ## FAQ  
 ### How can I access the admin panel?  
 The admin panel is restricted to authorized users
--  If you'd like to review its implementation, reach out at `eventsphereandteam@gmail.com`, and I'll share the credentials.  
+-  If you'd like to review its implementation, reach out at `jaygoyani2004@gmail.com`, and I'll share the credentials.  
