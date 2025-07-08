@@ -8,18 +8,11 @@ const app = express();
 const FrontendApi = process.env.FRONTEND_API;
 
 const corsOptions = {
-    origin: [FrontendApi, "http://localhost:5173"],
+    origin: [process.env.FRONTEND_API, "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
-}
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
-
+};
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
