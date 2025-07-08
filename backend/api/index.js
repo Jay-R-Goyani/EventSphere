@@ -5,13 +5,20 @@ const connectDb = require("../config/dbconnection");
 
 
 const app = express();
+const FrontendApi = process.env.FRONTEND_API;
+
 const corsOptions = {
-    origin: [process.env.FRONTEND_API, "http://localhost:5173"],
+    origin: [FrontendApi, "http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
+    allowedHeaders: ["Content-Type"],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    exposedHeaders: ['Content-Type', 'Authorization']
 }
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -41,6 +48,14 @@ app.use("/api/collegeRep", collegeRep);
 app.use("/api/admin", adminroutes);
 app.use("/api/admin-auth", adminAuthRoutes);
 
-connectDb();
+
+const PORT = process.env.PORT || 3000;
+connectDb().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}).catch((err) => {
+    console.log(err);
+});
 
 module.exports = app;
