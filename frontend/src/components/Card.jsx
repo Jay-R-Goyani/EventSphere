@@ -17,7 +17,11 @@ function Card(props) {
                     onClick={() => handleImageClick(event._id)}
                 />
                 <div className="absolute top-3 left-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow">
-                    {event.date ? new Date(event.date).toLocaleDateString() : 'Upcoming'}
+                    {event.registrationEndDate
+                        ? (new Date(event.registrationEndDate) < new Date()
+                            ? 'Past Event'
+                            : 'Upcoming')
+                        : 'Upcoming'}
                 </div>
             </div>
             <div className="p-5 bg-gray-900">

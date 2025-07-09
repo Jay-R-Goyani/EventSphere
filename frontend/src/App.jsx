@@ -115,6 +115,8 @@ export const App = () => {
                 <Route path='/admin-clubs/:id' element={<Navigate to="/admin-login" replace />} />
               </>
             )}
+            {/* Catch-all route for non-valid URLs */}
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </AuthProvider>
       </Router>

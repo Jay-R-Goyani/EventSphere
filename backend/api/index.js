@@ -8,7 +8,7 @@ const app = express();
 const FrontendApi = process.env.FRONTEND_API;
 
 const corsOptions = {
-    origin: [FrontendApi , "https://localhost:3000"],
+    origin: [FrontendApi, "https://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
